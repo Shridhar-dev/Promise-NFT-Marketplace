@@ -41,7 +41,7 @@ export default function Home() {
                     
                     <div className="text-left">
                         <small>
-                            From : satoshi.eth
+                            From : 0x00000
                         </small>
                     </div>
                 </div>
@@ -72,7 +72,7 @@ export default function Home() {
                       </button>
                       <div className="text-left mt-5">
                           <small>
-                              From : satoshi.eth
+                              From : 0x00000
                           </small>
                       </div>
                   </div>
