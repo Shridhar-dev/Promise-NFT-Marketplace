@@ -50,7 +50,7 @@ contract Marketplace is ReentrancyGuard {
     uint256 tokenId,
     uint256 price
   ) public payable nonReentrant {
-    require(price > 0, "Price must greater or equal to 1 wei");
+    require(price > 0, "Price must be at least 1 wei");
     require(msg.value >= (price/2), "You need to stake more or equal to half the price specified for putting items in marketplace");
 
     _itemIds.increment();
