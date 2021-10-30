@@ -1,16 +1,21 @@
-html,
-body {
-  padding: 0;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.grad-text{
+    line-height:7rem;
+    background: linear-gradient(100.19deg, #FFFFFF 49.71%, #01B3FF 97.61%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
+@media only screen and (max-width: 800px){
+    .grad-text{
+        line-height:5rem !important;
+    }
 }
-
-* {
-  box-sizing: border-box;
+@media only screen and (max-width: 600px){
+    .grad-text{
+        line-height:3rem !important;
+    }
 }
