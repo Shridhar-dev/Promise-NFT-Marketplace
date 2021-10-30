@@ -12,8 +12,7 @@ function NFT(props) {
 
     const context = useContext(Config)
 
-    const [data, setData] = useState({promiseText:'',price:'0',sold:false})
-
+    const [data, setData] = useState({promiseText:'',price:'0'})
 
     async function buyPromise(){
         let price = await context.marketplaceContract.getPriceofNFT(props.data.itemId)
