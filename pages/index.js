@@ -82,10 +82,10 @@ export default function Home() {
 
       <section className="mt-60" >
           <h1 className="text-5xl font-bold grad-text text-center">Demo</h1>
-          <iframe className="mx-auto" width="853" height="480" src="https://www.youtube.com/embed/aWBGDitWxYE" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+          <iframe className="mx-auto mt-8" width="853" height="480" src="https://www.youtube.com/embed/aWBGDitWxYE" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
       </section>
 
-      <footer className="mt-60 mx-auto text-center pb-10 text-xl">
+      <footer className=" mt-28 mx-auto text-center pb-10 text-xl">
           Made by team ZapDapp
       </footer>
     </div>
