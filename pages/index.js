@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import Link from 'next/link'
 
 export default function Home() {
   return (
@@ -13,10 +14,13 @@ export default function Home() {
           Promises <br/> Decentralized.
         </h1>
         <h2 className="text-xl md:text-2xl mt-8 text-center">Sell your promises as NFT{`'`}s</h2>
-
-        <button className="mt-8 rounded bg-bgSecondary py-3 px-10 shadow-lg transform hover:scale-95 transition-all duration-300">
-            ✨  Start minting today
-        </button>
+        <Link href="/dashboard">
+          <a>
+            <button className="mt-8 rounded bg-bgSecondary py-3 px-10 shadow-lg transform hover:scale-95 transition-all duration-300">
+                ✨  Start minting today
+            </button>
+          </a>
+        </Link>
       </section>
 
       <section className="grid grid-cols-1 md:grid-cols-2 grid-flow-row gap-10 mt-40">
@@ -78,8 +82,12 @@ export default function Home() {
 
       <section className="mt-60" >
           <h1 className="text-5xl font-bold grad-text text-center">Demo</h1>
+          <iframe className="mx-auto" width="853" height="480" src="https://www.youtube.com/embed/aWBGDitWxYE" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
       </section>
 
+      <footer className="mt-60 mx-auto text-center pb-10 text-xl">
+          Made by team ZapDapp
+      </footer>
     </div>
   )
 }
