@@ -4,4 +4,8 @@ This project uses the power of NFT's(Non-Fungible Tokens) to make the process of
 
 <br/>
 
+The smart contracts are deployed on the rinkeby test network
+
+<br/>
+
 ![Home Page](https://assets.devfolio.co/hackathons/9cb3e03355a54e06adbf987bb4f012f6/projects/95cbc455c78d4647a9a1aee974a0294d/e72bc176-d585-4122-9ac2-ea17bc731eab.png "Home Page")
