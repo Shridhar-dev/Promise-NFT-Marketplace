@@ -12,7 +12,7 @@ function NFT(props) {
 
     const context = useContext(Config)
 
-    const [data, setData] = useState({promiseText:'',price:'0'})
+    const [data, setData] = useState({promiseText:'',price:'0',sold:false})
 
 
     async function buyPromise(){
@@ -47,6 +47,8 @@ function NFT(props) {
     
     return (
         <div className="w-full border rounded text-center py-5">
+            {props.data !== undefined ?
+            <>
             <div className="font-bold text-3xl px-10 pt-5 pb-10">
                 I promise {data.promiseText}
             </div>
@@ -72,6 +74,10 @@ function NFT(props) {
                     </small>
                 </div>
             </div>
+            </>
+            : 
+            <br/>
+            }
         </div>
     )
 }
