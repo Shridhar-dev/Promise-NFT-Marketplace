@@ -4,11 +4,12 @@ import { create as ipfsHttpClient } from 'ipfs-http-client'
 import { ethers } from 'ethers'
 import Head from 'next/head'
 const client = ipfsHttpClient('https://ipfs.infura.io:5001/api/v0')
-import { tokenAddress, marketAddress } from '../addresses.config.js'
-import NFT from "./components/NFT"
+import { tokenAddress, marketAddress } from '../addresses.config'
+import NFT from "../components/NFT"
 
 function Dashboard() {
     const context = useContext(Config)
+    //let data;
     const [promises, setPromises] = useState([])
     const [promisesCreated, setPromisesCreated] = useState([])
     const [loaded, setLoaded] = useState(false)
@@ -16,17 +17,11 @@ function Dashboard() {
     const [promiseText, setPromiseText] = useState('')
     const [price, setPrice] = useState()
     const [receipent, setReceipent] = useState('')
-
+    
     useEffect(() => {
-        if(context.signer === undefined && context.marketplaceContract === ""){
-            alert("Please Connect your wallet before proceeding")
-        }
-        else{
-            loadMyPromises()
-        }
-    }, [context.signer,context.marketplaceContract])
-
-
+        loadMyPromises();
+    }, [])
+    
     async function loadMyPromises(){
         setPromises(await context.marketplaceContract?.fetchMyNFTs());
         loadCreatedPromises();
@@ -36,7 +31,6 @@ function Dashboard() {
         setPromisesCreated(await context.marketplaceContract?.fetchItemsCreated());
     }
 
-
     async function createPromise(e){
 
         const data = JSON.stringify({
@@ -44,16 +38,17 @@ function Dashboard() {
             price
         })
         let uri = await client.add(data);
-        console.log(uri)
 
-        let trx = await context.tokenContract?.createToken(uri.path);
+        let trx = await context.tokenContract.createToken(uri.path);
+      
         let tx = await trx.wait()
         let event = tx.events[0]
         let value = event.args[2]
 
         let id = value.toNumber()
-    
-        await context.marketplaceContract?.createNFTonMarket(tokenAddress,id,ethers.utils.parseUnits(price.toString(), 'ether'),{value:ethers.utils.parseUnits((price/2).toString(), 'ether')})
+        
+       
+        await context.marketplaceContract.createNFTonMarket(tokenAddress,id,ethers.utils.parseUnits(price.toString(), 'ether'),{value:ethers.utils.parseUnits((price/2).toString(), 'ether')})
 
         window.location.reload(false);
     }
@@ -74,8 +69,8 @@ function Dashboard() {
 
         let id = value.toNumber()
     
-        await context.marketplaceContract?.transferNFT(tokenAddress,id,receipent,{value:ethers.utils.parseUnits('0.1', 'ether')})
-
+        let trx2 = await context.marketplaceContract?.transferNFT(tokenAddress,id,receipent,{value:ethers.utils.parseUnits('0.1', 'ether')})
+        await trx2.wait();
         window.location.reload(false);
     }
 

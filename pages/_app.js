@@ -1,13 +1,7 @@
 import '../styles/globals.css'
 import Link from 'next/link'
 import { createContext, useEffect, useState } from 'react'
-import { ethers } from 'ethers'
-import Web3Modal from "web3modal"
-
-import { tokenAddress, marketAddress } from '../addresses.config.js'
-
-import Market from "../artifacts/contracts/Marketplace.sol/Marketplace.json"
-import Token from "../artifacts/contracts/Token.sol/Token.json"
+import connectWallet from '../utils';
 
 let Config = createContext();
 
@@ -20,26 +14,16 @@ function MyApp({ Component, pageProps }) {
   const [navBar, setNavBar] = useState('hidden')
   
   useEffect(() => {
-    connectWallet();
+    async function initialize(){
+      let data = await connectWallet();
+      setSigner(data.signer);
+      setMarketplaceContract(data.marketplaceContract);
+      setTokenContract(data.tokenContract);
+      setSignerAddress(data.signerAddress)
+    }
+    initialize();
   }, [])
 
-  useEffect(() => {
-    signer?.getAddress().then((res)=>{
-      setSignerAddress(res)
-    })
-  }, [signer])
-
-  async function connectWallet(){
-    const web3Modal = new Web3Modal()
-    const connection = await web3Modal.connect()
-    const provider = new ethers.providers.Web3Provider(connection)
-    const signer = provider.getSigner();
-    setSigner(signer);
-    const marketplaceContract = new ethers.Contract(marketAddress, Market.abi, signer)
-    setMarketplaceContract(marketplaceContract);
-    const tokenContract = new ethers.Contract(tokenAddress, Token.abi, signer)
-    setTokenContract(tokenContract);
-  }
 
   return (
     <div className="min-h-screen text-white bg-black">

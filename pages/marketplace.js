@@ -1,13 +1,10 @@
-import { ethers } from 'ethers';
 import React,{ useContext, useEffect, useState } from 'react'
-import { marketAddress, tokenAddress } from '../addresses.config';
 import Head from 'next/head'
-import Market from "../artifacts/contracts/Marketplace.sol/Marketplace.json"
-import Token from "../artifacts/contracts/Token.sol/Token.json"
-import NFT from './components/NFT';
+import NFT from '../components/NFT';
+import { Config } from './_app';
 
 function Marketplace() {
-   
+    const context = useContext(Config);
     const [nfts, setNfts] = useState([])
 
     useEffect(() => {
@@ -15,9 +12,7 @@ function Marketplace() {
     }, [])
 
     async function loadNFTs(){
-        const provider = new ethers.providers.JsonRpcProvider(`https://rinkeby.infura.io/v3/${process.env.NEXT_PUBLIC_PROJECT_ID}`);
-        const marketplaceContract = new ethers.Contract(marketAddress, Market.abi, provider)
-        const data = await marketplaceContract?.fetchMarketItems();
+        const data = await context.marketplaceContract.fetchMarketItems();
         setNfts(data) 
     }
 

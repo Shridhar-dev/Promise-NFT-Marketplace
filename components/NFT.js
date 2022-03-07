@@ -1,8 +1,8 @@
 import { ethers } from 'ethers'
 import { useRouter } from 'next/router'
 import React, { useContext, useLayoutEffect, useState } from 'react'
-import { tokenAddress } from '../../addresses.config'
-import { Config } from '../_app'
+import { tokenAddress } from '../addresses.config'
+import { Config } from '../pages/_app'
 
 function NFT(props) {
 
@@ -46,8 +46,7 @@ function NFT(props) {
     
     return (
         <div className="w-full border rounded text-center py-5">
-            {props.data !== undefined ?
-            <>
+         
             <div className="font-bold text-3xl px-10 pt-5 pb-10">
                 I promise {data.promiseText}
             </div>
@@ -73,10 +72,7 @@ function NFT(props) {
                     </small>
                 </div>
             </div>
-            </>
-            : 
-            <br/>
-            }
+            
         </div>
     )
 }

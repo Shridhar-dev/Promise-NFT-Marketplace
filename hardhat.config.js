@@ -8,7 +8,9 @@ module.exports = {
     },
     rinkeby: {
       url: "", //removed for security reasons
-      accounts: [""] //removed for security reasons
+      accounts: [""], //removed for security reasons
+      gas: 2100000,
+      gasPrice: 8000000000
     }
   },
   solidity: {
